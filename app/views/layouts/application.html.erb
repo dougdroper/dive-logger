@@ -2,13 +2,34 @@
 <html>
 <head>
   <title>DiveLogger3</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+      <ul class="nav">
+        <li><a href="/">Home</a></li>
+        <li>
+        <% if current_user %>
+        <a href="/">New log</a></li>
+        <% end %>
+        <li><a href="users/sign_in">Login</a></li>
+        <% if current_user %>
+        <li> <%= link_to "Sign out", destroy_user_session_path %> </li>
+        <% end %>
+      </ul>
+      </div>
+    </div>
+  </div>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+  <div class="container">
+    <%= yield %>
+  </div>
+  
 
 </body>
 </html>
